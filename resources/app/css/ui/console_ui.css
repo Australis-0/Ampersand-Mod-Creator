@@ -1,0 +1,65 @@
+/* -- Console CSS -- */
+.console-container {
+  position: fixed;
+  min-width: 30%;
+  max-width: 30%;
+  height: 20%;
+  top: 5.2vh;
+  right: 0.2vw;
+  z-index: 99;
+  padding-bottom: 1vh;
+
+  background-color: rgba(0, 0, 0, 0.8);
+  font-family: "Consolas";
+  font-size: 1em;
+  color: white;
+}
+.console-header {
+  font-size: 2em;
+  font-weight: 700;
+  color: white;
+  text-transform: uppercase;
+  margin-top: 5%;
+  margin-left: 5%;
+
+  font-family: "Josefin Sans";
+}
+hr.console-divider {
+  background: white;
+  border: 0.5px solid white;
+  width: 15%;
+  margin-top: 3%;
+  margin-left: 5%;
+}
+
+/* -- Globally applied to all console messages --*/
+.console-subcontainer {
+  margin: 5%;
+
+  min-height: 61%;
+  max-height: 61%;
+  overflow: auto;
+}
+
+/* -- Individual message type customisation --*/
+.error-msg {
+  color: rgb(255, 144, 118);
+}
+.error-prefix {
+  color: rgb(240, 60, 60);
+}
+.info-prefix {
+  color: lightblue;
+}
+.interactive {
+  text-decoration: underline;
+}
+.interactive:hover {
+  cursor: pointer;
+}
+.warn-prefix {
+  color: rgb(248, 220, 117);
+}
+.warn-msg {
+  color: rgb(246, 234, 189);
+}

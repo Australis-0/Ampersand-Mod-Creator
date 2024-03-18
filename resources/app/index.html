@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Triumph & Tragedy Mod Creator</title>
+		<!--Import Fonts, Font Awesome-->
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300;400;500;600;700&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Slabo+27px&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+		<script src="https://kit.fontawesome.com/22ccaf7e3f.js" crossorigin="anonymous"></script>
+
+		<!--Stylesheets-->
+		<link rel = "stylesheet" href = "./css/button_animations.css">
+		<link rel = "stylesheet" href = "./css/global.css">
+		<link rel = "stylesheet" href = "./css/map.css">
+		<link rel = "stylesheet" href = "./css/nav_header.css">
+
+		<!--Interface stylesheets-->
+		<link rel = "stylesheet" href = "./css/ui/console_ui.css">
+		<link rel = "stylesheet" href = "./css/ui/mapmode_ui.css">
+		<link rel = "stylesheet" href = "./css/ui/province_ui.css">
+		<link rel = "stylesheet" href = "./css/ui/province_data_ui.css">
+		<link rel = "stylesheet" href = "./css/ui/settings_ui.css">
+		<link rel = "stylesheet" href = "./css/ui/terrain_ui.css">
+		<link rel = "stylesheet" href = "./css/ui/tooltips_ui.css">
+
+		<!--Interact.js, jQuery, Panzoom.js, select-pure.js, SVG.js, Tippy.js-->
+		<script src = "./js/libraries/interact.min.js"></script>
+		<script src = "./js/libraries/svg.min.js"></script>
+		<script src = "./js/libraries/panzoom.js"></script>
+	</head>
+	<body>
+		<!--Header-->
+		<div id = "main-header" class = "main-header">
+			<ul>
+				<li class = "map active"><a href = "#">Map</a></li>
+				<li class = "terrain"><a href = "#">Terrain</a></li>
+				<li class = "provinces"><a href = "#">Provinces</a></li>
+				<li class = "settings"><a href = "#">Settings</a></li>
+				<div class = "right-button-container">
+					<button id = "open-console">Open Console</button>
+					<button id = "hide-borders">Hide Borders</button>
+					<button id = "hide-labels">Hide Labels</button>
+					<button id = "export-data">Export Data</button>
+				</div>
+				<hr>
+			</ul>
+		</div>
+
+		<!--Console-->
+		<div id = "console-container" class = "console-container">
+			<div id = "console-header" class = "console-header">Info Log:</div>
+			<hr class = "console-divider">
+			<div id = "console-subcontainer" class = "console-subcontainer">
+				<!--All messages logged to console are automatically generated here-->
+			</div>
+		</div>
+
+		<!--Map-->
+		<div id = "map-container" class = "map-container">
+			<div id = "map-subcontainer" class = "map-subcontainer">
+				<img src = "./map/background.png" id = "map-background" class = "underlay-image">
+				<object id = "province-map" data = "./map/provinces.svg" type = "image/svg+xml">
+				</object>
+				<img src = "./map/province_ids.png" id = "map-overlay" class = "overlay-image">
+			</div>
+		</div>
+
+		<!--Mapmode UI-->
+		<div id = "mapmode-button-title" class = "mapmode-button-title">
+			<span id = "mapmode-title" class = "mapmode-title">Mapmode:</span>
+			<span id = "current-mapmode-indicator" class = "mapmode-indicator"></span>
+			<hr class = "mapmode-divider">
+		</div>
+		<div id = "mapmode-button-container" class = "mapmode-button-container">
+			<button id = "normal-mapmode" class = "active">
+				<i class = "fas fa-flag"></i>
+			</button>
+			<button id = "adjacencies-mapmode">
+				<i class = "fas fa-long-arrow-alt-right"></i>
+			</button>
+			<button id = "coastal-mapmode">
+				<i class = "fas fa-water"></i>
+			</button>
+			<button id = "regions-mapmode">
+				<i class = "fas fa-flag-usa"></i>
+			</button>
+			<button id = "terrain-mapmode">
+				<i class = "fas fa-mountain"></i>
+			</button>
+		</div>
+
+		<!--Province UI-->
+		<!--Province UI Tabs-->
+		<div id = "province-ui-tabs" class = "province-tabs-container">
+			<div id = "map-tab">Map</div>
+			<div id = "ai-tab">AI</div>
+		</div>
+
+		<!--Province Data UI-->
+		<div id = "provinces-container" class = "provinces-container">
+			<div id = "provinces-subcontainer" class = "provinces-subcontainer">
+				<div id = "provinces-body" class = "provinces-body">
+					<div id = "provinces-list-title" class = "header">Provinces:</div>
+					<hr><br>
+					<!--Add Region-->
+					<input id = "add-region-name" class = "input-add-region" placeholder = "Enter Region Name"></input>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;
+					<button id = "add-region" class = "btn-add-region">
+						<i class = "fas fa-plus"></i>&nbsp;&nbsp; Add Region
+					</button>
+					<button id = "remove-empty-regions" class = "btn-remove-empty-regions">
+						Remove Empty Regions
+					</button>
+					<button id = "set-region-data" class = "btn-set-region-data">
+						<i class = "fas fa-check"></i>&nbsp;&nbsp; Set Region Data
+					</button>
+					&nbsp;&nbsp;
+					<span id = "region-alert" class = "region-alert"></span>
+					<br>
+					<!--Regions Viewer-->
+					<div id = "regions-viewer" class = "regions-viewer">
+					</div><br>
+				</div>
+			</div>
+		</div>
+
+		<!--Terrain UI-->
+		<div id = "terrain-container" class = "terrain-container">
+			<div id = "terrain-subcontainer" class = "terrain-subcontainer">
+				<div id = "terrain-body" class = "terrain-body">
+					<div id = "terrain-list-title" class = "header">Terrain List:</div>
+					<hr><br>
+					<!--Terrain Viewer-->
+					<div id = "terrain-viewer" class = "terrain-viewer">
+					</div><br>
+
+					<!--Add Terrain-->
+					<input id = "add-terrain-name" class = "input-add-terrain" placeholder = "Enter Terrain Name"></input>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;
+					<button id = "add-terrain" class = "btn-add-terrain">
+						<i class = "fas fa-plus"></i>&nbsp;&nbsp; Add Terrain
+					</button>
+					<button id = "set-terrain-data" class = "btn-set-terrain-data">
+						<i class = "fas fa-check"></i>&nbsp;&nbsp; Set Terrain Data
+					</button>
+					&nbsp;&nbsp;
+					<span id = "terrain-alert" class = "terrain-alert"></span>
+				</div>
+			</div>
+		</div>
+
+		<!--Settings UI-->
+		<div id = "settings-container" class = "settings-container">
+			<div id = "settings-subcontainer" class = "settings-subcontainer">
+				<div id = "settings-body" class = "settings-body">
+					<div id = "settings-list-title" class = "header">General Settings:</div>
+					<hr><br>
+					<!--File Paths-->
+
+					<!--Colours-->
+					<h1>Colours:</h1>
+					<div id = "settings-colours-viewer" class = "settings-colours-viewer"></div><br>
+					<!--Settings Tab-->
+					<button id = "set-settings-data" class = "btn-set-settings-data">
+						<i class = "fas fa-check"></i>&nbsp;&nbsp; Set Settings
+					</button><br>
+
+					<!--Debugger-->
+					<h1>Debugger:</h1>
+
+					You can choose to log all province errors or other issues that might be desirable to fix to the console by pressing the button(s) below.
+
+					<br><br>
+					<button id = "debugger-log">
+						<i class = "fas fa-scroll"></i>&nbsp;&nbsp; Log Issues to Console
+					</button>
+					&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;
+					<button id = "clear-log">Clear Log</button>
+				</div>
+			</div>
+		</div>
+
+		<!--Actual Province UI-->
+		<div id = "province-ui" class = "province-info-container">
+			<div id = "province-map-tab">
+				<div id = "province-id-display" class = "province-id-header">
+					<span id = "province-id-text-display">No province selected.</span>
+					<span id = "province-id-number-display"></span>
+				</div>
+				<hr class = "province-divider">
+				<div id = "province-information" class = "province-information-display">
+					<strong>Type: </strong><span id = "province-type-display">Land</span><br>
+					<strong>Region: </strong><span id = "province-region-display">None.</span><br>
+					<strong>Terrain: </strong><span id = "province-terrain-display">None.</span><br>
+					<strong>Adjacencies: </strong><span id = "province-adjacencies-display">None.</span>
+				</div>
+				<div id = "province-modding-buttons" class = "province-modding-buttons">
+					<div id = "select-adjacency-container" class = "province-modding-button-container">
+						<button id = "set-adjacency-button">Select Adjacency</button>
+						<button id = "remove-adjacency-button" class = "hidden">Remove Adjacency</button>
+						<span id = "adjacency-interface">
+						| <span id = "currently-selected-adjacency">None selected.</span>
+						</span>
+					</div>
+					<br>
+					<div id = "select-province-type-container" class = "province-modding-button-container">
+						<span id = "select-province-type-label" class = "beginning-province-ui-label">Select Province Type: | </span>
+						<select id = "select-province-type" class = "province-modding-button-dropdown"></select>
+						 |
+						<button id = "confirm-province-type" class = "confirmation-button"></button>
+					</div>
+					<br>
+					<div id = "select-province-region-container" class = "province-modding-button-container">
+						<span id = "select-province-region-label" class = "beginning-province-ui-label">Select Region: | </span>
+						<input list = "select-region-type" type = "text" id = "select-region">
+						<datalist id = "select-region-type" class = "province-modding-button-dropdown"></datalist>
+						 |
+					 	<button id = "confirm-province-region" class = "confirmation-button"></button>
+						<br><br>
+						<button id = "remove-province-region" class = "hidden">
+							<i class = "fas fa-trash"></i>&nbsp;&nbsp; Delete Region
+						</button>
+					</div>
+					<div id = "select-province-terrain-container" class = "province-modding-button-container">
+						<span id = "select-province-terrain-label" class = "beginning-province-ui-label">Select Terrain: | </span>
+						<input list = "select-terrain-type" type = "text" id = "select-terrain">
+						<datalist id = "select-terrain-type" class = "province-modding-button-dropdown"></datalist>
+						 |
+					 	<button id = "confirm-province-terrain" class = "confirmation-button"></button>
+					</div>
+				</div>
+			</div>
+			<div id = "province-ai-tab">
+				<!-- No content in here currently - WIP -->
+			</div>
+		</div>
+
+		<!--Initialise global frameworks and variables first-->
+		<script type = "text/javascript" src = "./js/settings.js"></script>
+		<script type = "text/javascript" src = "./js/ui/console_ui.js"></script>
+
+		<script type = "text/javascript" src = "./js/framework/colours.js"></script>
+		<script type = "text/javascript" src = "./js/framework/numbers.js"></script>
+		<script type = "text/javascript" src = "./js/framework/strings.js"></script>
+
+		<script type = "text/javascript" src = "./js/data/cache_framework.js"></script>
+		<script type = "text/javascript" src = "./js/data/data_framework.js"></script>
+		<script type = "text/javascript" src = "./js/data/debugger_framework.js"></script>
+		<script type = "text/javascript" src = "./js/data/map_framework.js"></script>
+		<script type = "text/javascript" src = "./js/data/region_framework.js"></script>
+		<script type = "text/javascript" src = "./js/data/settings_framework.js"></script>
+		<script type = "text/javascript" src = "./js/data/terrain_framework.js"></script>
+		<script type = "text/javascript" src = "./js/data/ui_framework.js"></script>
+
+		<!--Embedded JS-->
+		<script type = "text/javascript" src = "./js/ui/button_handler.js"></script>
+		<script type = "text/javascript" src = "./js/ui/keybind_handler.js"></script>
+		<script type = "text/javascript" src = "./js/ui/map_ui.js"></script>
+		<script type = "text/javascript" src = "./js/ui/mapmode_ui.js"></script>
+		<script type = "text/javascript" src = "./js/ui/province_data_ui.js"></script>
+		<script type = "text/javascript" src = "./js/ui/province_ui.js"></script>
+		<script type = "text/javascript" src = "./js/ui/settings_ui.js"></script>
+		<script type = "text/javascript" src = "./js/ui/terrain_ui.js"></script>
+
+		<!--STARTUP - KEEP AT BOTTOM-->
+		<script type = "text/javascript" src = "./js/startup.js"></script>
+	</body>
+</html>

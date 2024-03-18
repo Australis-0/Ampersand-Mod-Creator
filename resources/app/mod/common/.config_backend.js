@@ -1,0 +1,11 @@
+global.config = {};
+config.alerts = {};
+config.buildings = {};
+config.defines = {};
+config.events = {};
+config.icons = {};
+config.localisation = {};
+config.map = {};
+config.reforms = {};
+config.technology = {};
+config.units = {};

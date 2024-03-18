@@ -1,0 +1,21 @@
+/* -- Animations -- */
+@keyframes button-fill {
+  0% {
+    background-color: rgba(255, 255, 255, 0);
+    color: white;
+  }
+  100% {
+    background-color: rgba(255, 255, 255, 1);
+    color: black;
+  }
+}
+@keyframes button-fill-reverse {
+  0% {
+    background-color: rgba(255, 255, 255, 1);
+    color: black;
+  }
+  100% {
+    background-color: rgba(255, 255, 255, 0);
+    color: white;
+  }
+}

@@ -1,0 +1,109 @@
+/* -- Variables -- */
+:root {
+  --container-height: calc(100% - 5em);
+}
+
+/* -- Universal Formatting -- */
+/* -- Buttons -- */
+html, head, body {
+  margin: 0px;
+  height: 100%;
+  width: 100%;
+  overflow-y: hidden !important;
+}
+button, input {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  padding-left: 1em;
+  padding-right: 1em;
+  background-color: rgba(0, 0, 0, 0);
+  border: 3px solid white;
+
+  height: 3em;
+
+  font-family: "Raleway";
+  font-weight: 300;
+  color: white;
+}
+button:hover {
+  animation: button-fill 1s forwards;
+  cursor: pointer;
+}
+button:not(:hover) {
+  animation: button-fill-reverse 1s forwards;
+}
+button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* -- Global classes for convenience' sake -- */
+.header {
+  font-size: 2vh;
+  font-weight: 700;
+  color: white;
+  text-transform: uppercase;
+
+  font-family: "Josefin Sans";
+}
+.hidden {
+  display: none !important;
+}
+hr {
+  margin: 0;
+  margin-top: 1em;
+  width: 4em;
+
+  background: white;
+  border: 0.5px solid white;
+}
+
+/* -- Confirmation Check CSS -- */
+.confirmation-check-icon {
+  font-weight: 700;
+  color: white;
+}
+
+/* -- Dropdown input -- */
+select {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  padding-left: 1em;
+  padding-right: 1em;
+
+  border: 3px solid white;
+  height: 3em;
+  min-width: 8.5em;
+
+  font-family: "Raleway";
+  font-weight: 300;
+  color: white;
+
+  /* -- IE workaround even though we're using a Chromium client -- */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: url("../icons/down_arrow.png") 96% / 15% no-repeat rgba(0, 0, 0, 0);
+}
+select option {
+  background-color: black;
+  color: white;
+  height: 2em;
+}
+
+/* -- Paint input -- */
+.active-paint-tool {
+  animation: none !important;
+
+  background-color: white;
+  color: black;
+}
+
+/* -- Text input -- */
+input {
+  height: 1.6em;
+  margin-left: 0.3em;
+}
+input::placeholder {
+  color: rgb(150, 150, 150);
+}

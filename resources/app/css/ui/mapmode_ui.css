@@ -1,0 +1,71 @@
+/* -- Mapmode UI -- */
+.mapmode-button-title {
+  position: fixed;
+  z-index: 2;
+  right: 0.2vw;
+  bottom: 7.8vh;
+  width: 15vw;
+
+  font-family: "Josefin Sans";
+  font-weight: 700;
+  font-size: 1.5vh;
+  color: white;
+  text-transform: uppercase;
+  vertical-align: middle;
+
+  background-color: rgba(0, 0, 0, 0.8);
+  margin-bottom: 0.4vh;
+  padding: 0.5vw;
+  padding-bottom: 0.4vh;
+  padding-top: 1vh;
+}
+hr.mapmode-divider {
+  margin-left: 0px !important;
+}
+.mapmode-indicator {
+  font-family: "Barlow";
+  font-weight: 300;
+  font-size: 1.25vh;
+}
+
+/* -- Mapmode icon button container positioning -- */
+.mapmode-button-container {
+  position: fixed;
+  z-index: 2;
+  right: 0.2vw;
+  bottom: 0.4vh;
+  height: 6vh;
+  width: 15vw;
+
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 0.5vw;
+}
+.mapmode-button-container button {
+  /* -- Fix width and size -- */
+  min-width: 2.5vh;
+  max-width: 2.5vh;
+  min-height: 2.5vh;
+  max-height: 2.5vh;
+  margin-left: 0.25vw;
+
+  font-size: 1vh;
+  text-align: center;
+}
+.mapmode-button-container button:nth-child(1) {
+  margin-left: 0px;
+}
+.mapmode-button-container button i, .mapmode-button-container button i:before {
+  position: relative;
+  left: -0.6vh;
+
+  height: 2.5vh !important;
+  width: 2.5vh !important;
+}
+
+/* -- Mapmode button styling -- */
+.mapmode-button-container button.active {
+  animation: none !important;
+
+  background-color: white;
+  color: black;
+}

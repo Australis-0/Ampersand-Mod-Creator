@@ -1,0 +1,40 @@
+/* -- Province data container -- */
+.provinces-container.visible {
+  position: fixed;
+  top: 5em;
+  left: 0px;
+
+  height: 100%;
+  width: 100%;
+
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 3;
+}
+.provinces-container:not(.visible) {
+  display: none;
+}
+
+/* -- Menu body -- */
+.provinces-subcontainer {
+  position: absolute;
+  top: 0%;
+  left: 2%;
+
+  height: 100%;
+  width: 96%;
+
+  color: white;
+  font-family: "Barlow";
+  font-weight: 300;
+}
+.provinces-body {
+  margin-top: 5%;
+  max-height: 85%;
+  overflow-y: auto;
+}
+
+/* -- Province menu elements -- */
+.provinces-fixed-width-colour-label {
+  display: inline-flex;
+  min-width: 5em;
+}
